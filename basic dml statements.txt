@@ -1,0 +1,124 @@
+ //basic dml statements
+
+import mysql.connector as c
+mydb=c.connect(
+host="localhost",
+user="root",
+password="1234",
+database="cvr"
+)
+mycursor=mydb.cursor()
+#mycursor.execute("create table students(sid int,sname varchar(20))")
+#mycursor.execute("INSERT INTO students VALUES (1,'sam')")
+#mycursor.execute("INSERT INTO students VALUES (2,'sap')")
+#mycursor.execute("delete from students where sid=1")
+#mycursor.execute("update students set sid=1 where sname='san'")
+#mycursor.execute("update students set sid=2 where sname='sam'")
+mycursor.execute("update students set sid=3 where sname='sap'")
+mydb.commit()
+
+
+//insert statement
+
+import mysql.connector as c
+mydb = c.connect(
+host="localhost",
+user="root",
+password="1234",
+database="cvr"
+)
+mycursor = mydb.cursor()
+
+name=input("Enter your name")
+id = input("Enter your id")
+mycursor.execute("insert into students values(%s,%s)",(id,name))
+mydb.commit()
+
+
+//select statement
+
+import mysql.connector as c
+mydb = c.connect(
+host="localhost",
+user="root",
+password="1234",
+database="cvr"
+)
+mycursor = mydb.cursor()
+
+#name=input("Enter your name")
+#id = input("Enter your id")
+mycursor.execute("select * from students")
+students=mycursor.fetchall()
+for std in students:
+print(std)
+mydb.commit()
+
+
+// employee example
+
+import mysql.connector as c
+mydb=c.connect(
+host="localhost",
+user="root",
+password="1234",
+database="cvr"
+)
+mycursor=mydb.cursor()
+#mycursor.execute("create table employee(eid int,ename varchar(20),score int,address varchar(20))")
+#mycursor.execute("INSERT INTO employee VALUES (1,'Alice',85,'Pune')")
+#mycursor.execute("INSERT INTO employee VALUES (2,'Bob',90,'Benguluru')")
+#mycursor.execute("INSERT INTO employee VALUES (3,'Charlie',78,'Hyderabad')")
+#mycursor.execute("INSERT INTO employee VALUES (4,'Diana',92,'Hyderabad')")
+#mycursor.execute("INSERT INTO employee VALUES (6,'Frank',60,'Pune')")
+#mycursor.execute("INSERT INTO employee VALUES (7,'Alice',86,'Pune')")
+#mycursor.execute("delete from employee where eid=7")
+#mycursor.execute("update employee set eid=5 where eid=6")
+#mycursor.execute("select * from employee")
+#emp=mycursor.fetchall()
+#for emps in emp:
+# print(emps)
+#mycursor.execute("select eid,ename from employee order by ename asc")
+#emp=mycursor.fetchall()
+#for emps in emp:
+# print(emps)
+#mycursor.execute("SELECT * FROM employee WHERE score BETWEEN 70 AND 90")
+#emp=mycursor.fetchall()
+#for emps in emp:
+# print(emps)
+mycursor.execute("SELECT * FROM employee where address='Hyderabad'")
+emp=mycursor.fetchall()
+for emps in emp:
+print(emps)
+
+mydb.commit()
+
+
+//pandas basic programs
+
+
+1)import pandas as pd
+uber_data=pd.read_csv("Uber.csv")
+uber_data.head()
+#loading from excel file
+#uber_data=
+#print(uber_data.shape)
+#print(uber_data.info())
+#print(uber_data.describe())
+print(uber_data.isnull().sum())
+uber_data.head()
+uber_data.tail()
+uber_data.iloc[0]
+uber_data.iloc[2:8]
+uber_data.iloc[2:8,1:3]
+uber_data.iloc[20:41,1:4]
+
+2)
+import pandas as pd
+df=pd.read_csv(
+"Uber.csv",
+sep=",",
+dtype={"START":int},
+skiprows=1,
+nrows=5,na_values=["NA","Unknown"])
+print(df)

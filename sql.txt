@@ -1,0 +1,341 @@
+1.Create database:
+	create database cvr;
+2. Connect with database
+	use cvr;
+3. view all the tables in cvr database
+	show tables;
+Student Table:
+
+create table student(sno int, sname varchar(20), marks int, city varchar(20), mobile int, gender varchar(20));
+
+insert into student values(1,'sannutha',99,'Hyderabad',9900887766,'Female');
+
+insert into student values(2,'supriya',90,'Hyderabad',8855331122,'Male');
+
+insert into student values(3,'tejasri',87,'Pune',1234567890,'Female');
+
+insert into student values(4,'ramu',57,'Pune',1256890012,'Male');
+
+insert into student values(5,'ramalaxmi',77,'Hyderabad',1254322100,'Female');
+
+insert into student values(6,'mahi',70,'Bglr',1234560088,'Male');
+
+insert into student values(7,'sapna',50,'Bglr',1990067581,'Female');
+
+insert into student values(8,'vijaya',37,'Pune',9491244700,'Female');
+
+insert into student values(9,'shankar',68,'Bglr',9700828246,'Male');
+
+insert into student values(10,'anand',44,'Hyderabad',9988665544,'Male');
+
+select * from student;
++------+-----------+-------+-----------+------------+--------+
+| Sno  | Sname     | marks | city      | mobile     | gender |
++------+-----------+-------+-----------+------------+--------+
+|    1 | sannutha  |    99 | Hyderabad | 9900887766 | Female |
+|    2 | supriya   |    90 | Hyderabad | 8855331122 | Male   |
+|    3 | tejasri   |    87 | Pune      | 1234567890 | Female |
+|    4 | ramu      |    57 | Pune      | 1256890012 | Male   |
+|    5 | ramalaxmi |    77 | Hyderabad | 1254322100 | Female |
+|    6 | mahi      |    70 | Bglr      | 1234560088 | Male   |
+|    7 | sapna     |    50 | Bglr      | 1990067581 | Female |
+|    8 | vijaya    |    37 | Pune      | 9491244700 | Female |
+|    9 | shankar   |    68 | Bglr      | 9700828246 | Male   |
+|   10 | anand     |    44 | Hyderabad | 9988665544 | Male   |
++------+-----------+-------+-----------+------------+--------+
+
+select * from student where city='Pune';
++------+---------+-------+------+------------+--------+
+| Sno  | Sname   | marks | city | mobile     | gender |
++------+---------+-------+------+------------+--------+
+|    3 | tejasri |    87 | Pune | 1234567890 | Female |
+|    4 | ramu    |    57 | Pune | 1256890012 | Male   |
+|    8 | vijaya  |    37 | Pune | 9491244700 | Female |
++------+---------+-------+------+------------+--------+
+
+select * from student where city='Pune' or city='Hyderabad';
++------+-----------+-------+-----------+------------+--------+
+| Sno  | Sname     | marks | city      | mobile     | gender |
++------+-----------+-------+-----------+------------+--------+
+|    1 | sannutha  |    99 | Hyderabad | 9900887766 | Female |
+|    2 | supriya   |    90 | Hyderabad | 8855331122 | Male   |
+|    3 | tejasri   |    87 | Pune      | 1234567890 | Female |
+|    4 | ramu      |    57 | Pune      | 1256890012 | Male   |
+|    5 | ramalaxmi |    77 | Hyderabad | 1254322100 | Female |
+|    8 | vijaya    |    37 | Pune      | 9491244700 | Female |
+|   10 | anand     |    44 | Hyderabad | 9988665544 | Male   |
++------+-----------+-------+-----------+------------+--------+
+
+select * from student where gender='female' and city='Hyderabad'union(select * from student where gender='male' and city='Pune')union(select * from student where city='Bglr');
++------+-----------+-------+-----------+------------+--------+
+| Sno  | Sname     | marks | city      | mobile     | gender |
++------+-----------+-------+-----------+------------+--------+
+|    1 | sannutha  |    99 | Hyderabad | 9900887766 | Female |
+|    5 | ramalaxmi |    77 | Hyderabad | 1254322100 | Female |
+|    4 | ramu      |    57 | Pune      | 1256890012 | Male   |
+|    6 | mahi      |    70 | Bglr      | 1234560088 | Male   |
+|    7 | sapna     |    50 | Bglr      | 1990067581 | Female |
+|    9 | shankar   |    68 | Bglr      | 9700828246 | Male   |
++------+-----------+-------+-----------+------------+--------+
+
+select * from student where gender='male' and marks>70 union(select * from student where gender='female' and marks>50);
++------+-----------+-------+-----------+------------+--------+
+| Sno  | Sname     | marks | city      | mobile     | gender |
++------+-----------+-------+-----------+------------+--------+
+|    2 | supriya   |    90 | Hyderabad | 8855331122 | Male   |
+|    1 | sannutha  |    99 | Hyderabad | 9900887766 | Female |
+|    3 | tejasri   |    87 | Pune      | 1234567890 | Female |
+|    5 | ramalaxmi |    77 | Hyderabad | 1254322100 | Female |
++------+-----------+-------+-----------+------------+--------+
+
+select * from student where gender='male'and city='Hyderabad' and marks>70 union(select * from student where gender='female' and marks>50);
++------+-----------+-------+-----------+------------+--------+
+| Sno  | Sname     | marks | city      | mobile     | gender |
++------+-----------+-------+-----------+------------+--------+
+|    2 | supriya   |    90 | Hyderabad | 8855331122 | Male   |
+|    1 | sannutha  |    99 | Hyderabad | 9900887766 | Female |
+|    3 | tejasri   |    87 | Pune      | 1234567890 | Female |
+|    5 | ramalaxmi |    77 | Hyderabad | 1254322100 | Female |
++------+-----------+-------+-----------+------------+--------+
+
+
+select * from student where gender='male'and city='Pune';
++------+-------+-------+------+------------+--------+
+| Sno  | Sname | marks | city | mobile     | gender |
++------+-------+-------+------+------------+--------+
+|    4 | ramu  |    57 | Pune | 1256890012 | Male   |
++------+-------+-------+------+------------+--------+
+
+
+select * from student where city='Hyderabad' and gender='male'and marks>70 union(select * from student where city='Hyedrabad' and gender='female' and marks>50);
++------+---------+-------+-----------+------------+--------+
+| Sno  | Sname   | marks | city      | mobile     | gender |
++------+---------+-------+-----------+------------+--------+
+|    2 | supriya |    90 | Hyderabad | 8855331122 | Male   |
++------+---------+-------+-----------+------------+--------+
+
+
+select * from student where city='Hyderabad' and gender='male'and marks>70 union(select * from student where city='Hyedrabad' and gender='female' and marks>50)union(select * from student where not city='Bglr');
++------+-----------+-------+-----------+------------+--------+
+| Sno  | Sname     | marks | city      | mobile     | gender |
++------+-----------+-------+-----------+------------+--------+
+|    2 | supriya   |    90 | Hyderabad | 8855331122 | Male   |
+|    1 | sannutha  |    99 | Hyderabad | 9900887766 | Female |
+|    3 | tejasri   |    87 | Pune      | 1234567890 | Female |
+|    4 | ramu      |    57 | Pune      | 1256890012 | Male   |
+|    5 | ramalaxmi |    77 | Hyderabad | 1254322100 | Female |
+|    8 | vijaya    |    37 | Pune      | 9491244700 | Female |
+|   10 | anand     |    44 | Hyderabad | 9988665544 | Male   |
++------+-----------+-------+-----------+------------+--------+
+
+
+select * from student where city='Hyderabad' and gender='male'and marks>70 union(select * from student where city='Hyedrabad' and gender='female' and marks>50)union(select * from student where city!='Bglr');
++------+-----------+-------+-----------+------------+--------+
+| Sno  | Sname     | marks | city      | mobile     | gender |
++------+-----------+-------+-----------+------------+--------+
+|    2 | supriya   |    90 | Hyderabad | 8855331122 | Male   |
+|    1 | sannutha  |    99 | Hyderabad | 9900887766 | Female |
+|    3 | tejasri   |    87 | Pune      | 1234567890 | Female |
+|    4 | ramu      |    57 | Pune      | 1256890012 | Male   |
+|    5 | ramalaxmi |    77 | Hyderabad | 1254322100 | Female |
+|    8 | vijaya    |    37 | Pune      | 9491244700 | Female |
+|   10 | anand     |    44 | Hyderabad | 9988665544 | Male   |
++------+-----------+-------+-----------+------------+--------+
+
+
+select * from student where city='Hyderabad' and gender='male'and marks>70 union(select * from student where city='Hyedrabad' and gender='female' and marks>50)union(select * from student where city!='Bglr' and city!='Pune');
++------+-----------+-------+-----------+------------+--------+
+| Sno  | Sname     | marks | city      | mobile     | gender |
++------+-----------+-------+-----------+------------+--------+
+|    2 | supriya   |    90 | Hyderabad | 8855331122 | Male   |
+|    1 | sannutha  |    99 | Hyderabad | 9900887766 | Female |
+|    5 | ramalaxmi |    77 | Hyderabad | 1254322100 | Female |
+|   10 | anand     |    44 | Hyderabad | 9988665544 | Male   |
++------+-----------+-------+-----------+------------+--------+
+
+select * from student where (city='Hyderabad' or city='Bglr')and marks between 50 and 80;
++------+-----------+-------+-----------+------------+--------+
+| Sno  | Sname     | marks | city      | mobile     | gender |
++------+-----------+-------+-----------+------------+--------+
+|    5 | ramalaxmi |    77 | Hyderabad | 1254322100 | Female |
+|    6 | mahi      |    70 | Bglr      | 1234560088 | Male   |
+|    7 | sapna     |    50 | Bglr      | 1990067581 | Female |
+|    9 | shankar   |    68 | Bglr      | 9700828246 | Male   |
++------+-----------+-------+-----------+------------+--------+
+
+select * from student where sname like 's%' and sname like '%a';
++------+----------+-------+-----------+------------+--------+
+| Sno  | Sname    | marks | city      | mobile     | gender |
++------+----------+-------+-----------+------------+--------+
+|    1 | sannutha |    99 | Hyderabad | 9900887766 | Female |
+|    2 | supriya  |    90 | Hyderabad | 8855331122 | Male   |
+|    7 | sapna    |    50 | Bglr      | 1990067581 | Female |
++------+----------+-------+-----------+------------+--------+
+
+select city,count(*) as "No of stds" from student group by city;
++-----------+------------+
+| city      | No of stds |
++-----------+------------+
+| Bglr      |          3 |
+| Hyderabad |          4 |
+| Pune      |          3 |
++-----------+------------+
+
+select city,avg(marks) as "avg score" from student group by city order by "avg score" desc limit 1;
++-----------+-----------+
+| city      | avg score |
++-----------+-----------+
+| Hyderabad |   77.5000 |
++-----------+-----------+
+
+
+select city,max(marks) as "top_score" from student group by city;
++-----------+-----------+
+| city      | top_score |
++-----------+-----------+
+| Bglr      |        70 |
+| Hyderabad |        99 |
+| Pune      |        87 |
++-----------+-----------+
+
+select * from student where marks in(select max(marks) from student where city='Hyderabad');
++------+----------+-------+-----------+------------+--------+
+| Sno  | Sname    | marks | city      | mobile     | gender |
++------+----------+-------+-----------+------------+--------+
+|    1 | sannutha |    99 | Hyderabad | 9900887766 | Female |
++------+----------+-------+-----------+------------+--------+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+create database retail;
+
+use retail;
+
+create table salespeople(snum int not null,sname varchar(30) not null,city varchar(30) not null,comm decimal(4,2) not null,primary key (snum));
+
+insert into salespeople values(1001,'Peel','London',0.12);
+
+insert into salespeople values(1002,'Serres','San Jose',0.13);
+
+insert into salespeople values(1003,'AlexRod','New York',0.10);
+
+insert into salespeople values(1004,'Motika','London',0.11);
+
+insert into salespeople values(1005,'Frna','London',0.26);
+
+insert into salespeople values(1007,'Rifkin','Bracelona',0.15);
+
+select * from salespeople;
++------+---------+-----------+------+
+| snum | sname   | city      | comm |
++------+---------+-----------+------+
+| 1001 | Peel    | London    | 0.12 |
+| 1002 | Serres  | San Jose  | 0.13 |
+| 1003 | AlexRod | New York  | 0.10 |
+| 1004 | Motika  | London    | 0.11 |
+| 1005 | Frna    | London    | 0.26 |
+| 1007 | Rifkin  | Bracelona | 0.15 |
++------+---------+-----------+------+
+
+
+update salespeople set sname='Fran' where snum=1005;
+
+
+select * from salespeople;
++------+---------+-----------+------+
+| snum | sname   | city      | comm |
++------+---------+-----------+------+
+| 1001 | Peel    | London    | 0.12 |
+| 1002 | Serres  | San Jose  | 0.13 |
+| 1003 | AlexRod | New York  | 0.10 |
+| 1004 | Motika  | London    | 0.11 |
+| 1005 | Fran    | London    | 0.26 |
+| 1007 | Rifkin  | Bracelona | 0.15 |
++------+---------+-----------+------+
+
+
+create table customer(cnum int not null,cname varchar(30) not null,city varchar(30) not null,rating int not null,snum int not null,primary key (cnum),foreign key (snum) references salespeople(snum));
+
+insert into customer values(2001,'Hoffman','London',100,1001);
+
+insert into customer values(2002,'Giovanni','Rome',200,1003);
+
+insert into customer values(2003,'Liu','San Jose',200,1002);
+
+insert into customer values(2004,'Grass','Berlin',300,1002);
+
+insert into customer values(2006,'Clemens','London',100,1001);
+
+insert into customer values(2008,'Cisneros','San Jose',300,1007);
+
+insert into customer values(2007,'Pereira','Rome',100,1004);
+
+select * from customer;
++------+----------+----------+--------+------+
+| cnum | cname    | city     | rating | snum |
++------+----------+----------+--------+------+
+| 2001 | Hoffman  | London   |    100 | 1001 |
+| 2002 | Giovanni | Rome     |    200 | 1003 |
+| 2003 | Liu      | San Jose |    200 | 1002 |
+| 2004 | Grass    | Berlin   |    300 | 1002 |
+| 2006 | Clemens  | London   |    100 | 1001 |
+| 2007 | Pereira  | Rome     |    100 | 1004 |
+| 2008 | Cisneros | San Jose |    300 | 1007 |
++------+----------+----------+--------+------+
+
+1. select s.sname,count(c.cnum) as "num_customer" from salespeople s left join customer c on s.snum=c.snum group by s.snum;
++---------+--------------+
+| sname   | num_customer |
++---------+--------------+
+| Peel    |            2 |
+| Serres  |            2 |
+| AlexRod |            1 |
+| Motika  |            1 |
+| Fran    |            0 |
+| Rifkin  |            1 |
++---------+--------------+
+
+2.select s.sname,sum(c.rating) as "total_rating" from salespeople s join customer c on s.snum=c.snum group by s.snum order by total_rating desc;
++---------+--------------+
+| sname   | total_rating |
++---------+--------------+
+| Serres  |          500 |
+| Rifkin  |          300 |
+| AlexRod |          200 |
+| Peel    |          200 |
+| Motika  |          100 |
++---------+--------------+
+
+
+CREATE TABLE orders ( 
+         onum    INT  NOT NULL, 
+    amt  DECIMAL(7,2)  NOT NULL, 
+         odate  Date   NOT NULL, 
+ cnum  int  NOT NULL, 
+         PRIMARY KEY  (onum), 
+     FOREIGN KEY (cnum) REFERENCES customer(cnum) 
+       ); 
+INSERT INTO orders VALUES (3001, 18.69, '1996-03-10', 2008);
+INSERT INTO orders VALUES (3003, 767.19, '1996-10-03', 2001);  
+INSERT INTO orders VALUES (3002, 1900.10, '1996-10-03', 2007);  
+INSERT INTO orders VALUES (3005, 5160.45, '1996-10-03', 2003);  
+INSERT INTO orders VALUES (3006, 1098.16, '1996-10-03', 2008);  
+INSERT INTO orders VALUES (3009, 1713.23, '1996-10-04', 2002);  
+INSERT INTO orders VALUES (3007, 75.75, '1996-10-04', 2002);  
+INSERT INTO orders VALUES (3008, 4723.00, '1996-10-05', 2006);  
+INSERT INTO orders VALUES (3010, 1309.95, '1996-10-06', 2004);  
+INSERT INTO orders VALUES (3011, 9891.88, '1996-10-06', 2006);  
+
+
+
+
+
+
+
+
+
+
+
+
+
